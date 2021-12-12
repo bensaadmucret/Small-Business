@@ -1,0 +1,25 @@
+{
+    "name": "ben/e-boutique",
+    "authors": [
+        {
+            "name": "mohammedBensaad",
+            "email": "bensaadmucret@gmail.com"
+        }
+    ],
+    "license": "MIT",
+    "autoload": {
+        "files":["start/boostrap.php"],
+        "psr-4": {
+            "App\\": "app/"
+        }
+    },
+    "minimum-stability": "dev",
+    "require": {
+        "symfony/http-foundation": "6.1.x-dev",
+        "robmorgan/phinx": "dev-master",
+        "psr/container": "2.0.x-dev"
+    },
+    "require-dev": {
+        "symfony/var-dumper": "6.1.x-dev"
+    }
+}

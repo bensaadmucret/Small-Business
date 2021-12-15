@@ -1,28 +1,37 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace App;
 
 use App\router\Router;
+use App\Container\Container;
 
+class Application
+{
+    protected $container;
 
-class Application{
+    public function __construct()
+    {
+        $this->container = new Container();
+    }
     
-        public function run(){
+
+    public function run()
+    {
 
            
             // router
-            $router = new Router();            
-            Router::setNameSpace('App\\Controller\\');
+        $router = new Router();
+        Router::setNameSpace('App\\Controller\\');
            
-            $router->add('GET', '/', 'HomeController@index', 'home');
-            $router->add('GET','/', function(){
-                echo 'hello';
-            },'home');
-            $router->dispatch();
+        $router->add('GET', '/', 'HomeController@index', 'home');
+        $router->add('GET', '/', function () {
+            echo 'hello';
+        }, 'home');
+        $router->dispatch();
+    }
 
-          
-            
-        }
-
-        
+    public function getContainer()
+    {
+        return $this->container;
+    }
 }

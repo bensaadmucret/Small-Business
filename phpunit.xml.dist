@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit bootstrap="vendor/autoload.php">
+    <testsuites>
+        <testsuite name="MediaManger">
+            <file>tests\Container\testContainer.php</file>
+            
+        </testsuite>
+    </testsuites>
+</phpunit>

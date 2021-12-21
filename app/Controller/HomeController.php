@@ -1,9 +1,8 @@
 <?php declare(strict_types=1);
 
 namespace App\Controller;
-use Psr\Container\ContainerInterface;
 
-
+use Core\Controller\BaseController;
 use Symfony\Component\HttpFoundation\Response;
 
 class HomeController extends BaseController
@@ -17,9 +16,4 @@ class HomeController extends BaseController
     {
         return new Response('<html><body>Hello World!</body></html>');
     }
-
-    
-
-
-    
 }

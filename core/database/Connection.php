@@ -1,7 +1,7 @@
 <?php declare(strict_types=1);
 
 
-namespace App\Database;
+namespace Core\Database;
 
 /**
  * Represent the Connection
@@ -24,7 +24,7 @@ class Connection
     {
 
         // read parameters in the ini configuration file
-        $params = parse_ini_file('database.ini');
+        $params = parse_ini_file(__DIR__. DIRECTORY_SEPARATOR .'database.ini');
         if ($params === false) {
             throw new \Exception("Error reading database configuration file");
         }
@@ -33,8 +33,8 @@ class Connection
             "mysql:host=%s;port=%d;dbname=%s;user=%s;password=%s",
             $params['host'],
             $params['port'],
-            $params['database'],
-            $params['user'],
+            $params['dbname'],
+            $params['username'],
             $params['password']
         );
 

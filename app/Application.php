@@ -3,7 +3,7 @@
 namespace App;
 
 use App\router\Router;
-use App\Container\Container;
+use Core\Container\Container;
 
 class Application
 {

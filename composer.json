@@ -11,6 +11,7 @@
         "files":["start/boostrap.php"],
         "psr-4": {
             "App\\": "app/",
+            "Core\\": "core/",
             "App\\Test\\": "tests/"
         }
     },

@@ -4,11 +4,9 @@
 namespace App\factory;
 
 use App\Application;
-use App\Container\testClass\Bar;
-use App\Container\testClass\Foo;
-use App\Database\Connection;
-use DeepCopy\f001\B;
-use Symfony\Component\Console\Helper\Dumper;
+use Core\Container\testClass\Bar;
+use Core\Container\testClass\Foo;
+use Core\Database\Connection;
 
 // create the AppFactory class for the application factory pattern
 
@@ -25,21 +23,11 @@ class AppFactory
         
         // create the container
         $container = $application->getContainer();
+        $container->set('Foo', new Foo(new Bar()));
+        $container->set('Connection', new Connection());
 
-       
+        $container->get('Connection')->connect();
 
-        // create the database connection
-        $container->set('db', Connection::class);
-       
-      
-
-        $container->set('foo', Foo::class);
-
-        $container->set(
-            'bar',
-            function () {
-                return new Bar();
-            }
-        );
+        $container->get('Foo');
     }
 }

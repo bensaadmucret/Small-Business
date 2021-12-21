@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace App\router;
+namespace Core\Router;
 
 use Symfony\Component\HttpFoundation\Request;
 

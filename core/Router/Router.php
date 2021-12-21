@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace App\router;
+namespace Core\Router;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -19,7 +19,6 @@ class Router
         $request = Request::createFromGlobals();
         $this->url = $request->getPathInfo();
         $this->method = $request->getMethod();
-      
     }
 
 
@@ -42,6 +41,7 @@ class Router
      * si une correspondance est trouvée, on retourne le nom de la route
      *
      * @return string
+     * @throws \Exception
      */
     public function getName(): string
     {
@@ -52,7 +52,7 @@ class Router
                 }
             }
         }
-        return '';
+        throw new \Exception('No route found for this url');
     }
    
     /**
@@ -62,12 +62,10 @@ class Router
      */
     public function getMethod()
     {
-        
         if ($this->method !== null) {
             return $this->method;
         }
-        return '';
-       
+        throw new \Exception('No method found');
     }
     
     
@@ -97,7 +95,7 @@ class Router
 
 
     /**
-     * retourne la route correspondante à l'url courante
+     * Retourne la route correspondante à l'url courante
      * @return Route
      */
     public function getRoute($callable)
@@ -109,7 +107,7 @@ class Router
                 endif;
             }
         }
-        return '';
+        throw new \Exception('No route found for this url');
     }
 
 
@@ -185,7 +183,6 @@ class Router
     {
         try {
             $response = $this->run();
-    
         } catch (RouterException $e) {
             $response = new Response($e->getMessage(), 404);
         }

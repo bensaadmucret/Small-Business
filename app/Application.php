@@ -2,7 +2,7 @@
 
 namespace App;
 
-use App\router\Router;
+use Core\Router\Router;
 use Core\Container\Container;
 
 class Application
@@ -17,19 +17,16 @@ class Application
 
     public function run()
     {
-
-           
-            // router
         $router = new Router();
         Router::setNameSpace('App\\Controller\\');
            
         $router->add('GET', '/', 'HomeController@index', 'home');
-        $router->add('GET', '/', function () {
-            echo 'hello';
-        }, 'home');
-        $router->dispatch();
+        $router->add('GET', '/about', 'HomeController@about', 'about');
+        $router->add('GET', '/contact', 'HomeController@contact', 'contact');
+        $router->add('GET', '/blog', 'HomeController@blog', 'blog');
+        $router->add('GET', '/blog/{id:\d+}', 'HomeController@blogPost', 'blog_post');
+        $router->add('GET', '/blog/category/{id:\d+}', 'HomeController@blogCategory', 'blog_category');
     }
-
     public function getContainer()
     {
         return $this->container;

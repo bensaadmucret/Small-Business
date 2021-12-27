@@ -2,83 +2,48 @@
 
 namespace Core\Controller;
 
+use Core\Router\Router;
+use Core\Container\Container;
+use Symfony\Component\HttpClient\HttpClient;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 abstract class BaseController
 {
     public $actions;
-    protected $_module;
-    protected $_name;
+    
     protected $_request;
     protected $_response;
-    protected $_invoke_args;
-    protected $_view;
-    protected $_httpClient;
+    protected $httpClient;
+    protected $router;
+    protected $container;
 
     public function __contructor(
-        Request $request,
-        Response $response,
-        $_invoke_args,
-        $_view,
-        $_httpClient
+        Request $_request,
+        Response $_response,
+        $_httpClient,
+        $router,
+        $container
     ) {
-        $this->_request = new \App\Request\Request();
-        $this->_response = new \App\Response\Response();
-        $this->_invoke_args = $invoke_args;
-        $this->_view = $_view;
-        $this->_httpClient = HttpClient::create();
+        $this->request = new Request();
+        $this->response = new Response();
+        $this->httpClient = HttpClient::create();
+        $this->router = new Router();
+        $this->container = new Container();
     }
 
-    public function display(string $tpl, array $parameters = null): bool
+    public function getContainer()
     {
-        $this->_view->display($tpl, $parameters);
-    }
-
-    public function getInvokeArg(string $name): string
-    {
-        return $this->_invoke_args[$name];
+        return $this->container;
     }
 
     
-    public function getInvokeArgs(): array
-    {
-        return $this->_invoke_args;
-    }
+       
     
-
-    public function getModuleName(): string
-    {
-        return $this->_module;
-    }
-    public function getName(): string
-    {
-        return $this->_name;
-    }
-    public function getRequest(): Request
-    {
-        return $this->_request;
-    }
-    public function getResponse(): Response
-    {
-        return $this->_response;
-    }
-    public function getView(): View
-    {
-        return $this->_view;
-    }
-    public function getViewpath(): string
-    {
-        return $this->_view->getViewpath();
-    }
-    public function initView(array $options = null): void
-    {
-        $this->_view = new View($options);
-    }
     public function redirect(string $method, string $url, int $statusCode): bool
     {
         try {
-            $response = $this->_httpClient->request($method, $url, $satusCoode);
+            $response = $this->httpClient->request($method, $url, $statusCode);
             return $response;
         } catch (\Exception $e) {
             return false;
@@ -86,9 +51,25 @@ abstract class BaseController
     }
 
     
-
-    protected function render(string $tpl, array $parameters = null): string
+    /**
+     * @param string $view
+     * @param array $data
+     * @return Response
+     */
+    protected function render(string $tpl, array $parameters = [])
     {
-        return $this->_view->render($tpl, $parameters);
+        if ($parameters) {
+            extract($parameters);
+        }
+       
+        ob_start();
+     
+
+        require_once(APP_PATH.'Layouts'. DS . $tpl . '.php');
+     
+        $content = ob_get_clean();
+        
+
+        require_once(APP_PATH.'Layouts'. DS .'default.php');
     }
 }

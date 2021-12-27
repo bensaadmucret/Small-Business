@@ -7,12 +7,7 @@ use Core\Container\Container;
 
 class Application
 {
-    protected $container;
-
-    public function __construct()
-    {
-        $this->container = new Container();
-    }
+    
     
 
     public function run()
@@ -24,11 +19,11 @@ class Application
         $router->add('GET', '/about', 'HomeController@about', 'about');
         $router->add('GET', '/contact', 'HomeController@contact', 'contact');
         $router->add('GET', '/blog', 'HomeController@blog', 'blog');
-        $router->add('GET', '/blog/{id:\d+}', 'HomeController@blogPost', 'blog_post');
-        $router->add('GET', '/blog/category/{id:\d+}', 'HomeController@blogCategory', 'blog_category');
+        $router->add('GET', '/blog/:123', 'HomeController@blogPost', 'blog_post');
+        $router->add('GET', '/blog/category/:125', 'HomeController@blogCategory', 'blog_category');
+        $router->dispatch();
     }
-    public function getContainer()
-    {
-        return $this->container;
-    }
+    
+
+    
 }

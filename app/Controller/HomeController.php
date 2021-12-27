@@ -12,8 +12,26 @@ class HomeController extends BaseController
         parent::__construct();
     }
 
-    public function index() : Response
+    public function index()
     {
-        return new Response('<html><body>Hello World!</body></html>');
+        return  $this->render('home/index');
+    }
+
+    public function about()
+    {
+      
+        return  $this->render('home/about');
+    }
+   
+
+
+    public function blog() 
+    {
+        return $this->render('home/blog');
+    }
+
+    public function contact()
+    {
+        return $this->render('home/contact');
     }
 }

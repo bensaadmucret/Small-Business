@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
     <meta name="description" content="">
     <link rel="stylesheet" type="text/css" href="<?php echo absolutePath('/assets/css/main.css'); ?>">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -16,7 +16,7 @@
      <?php echo  $content; ?>
     </div>
    <div class="sidenav">
-     <a href="<?php echo absolutePath('/'); ?>"><i class="fas fa-cloud"></i></a>  
+     <a href="<?php echo absolutePath('/'); ?>"><i class="fas fa-cloud" style="font-size:60px;color:lightblue;"></i></a>  
     <a href="<?php echo absolutePath('/'); ?>">Home</a>   
     <a href="<?php echo absolutePath('/about'); ?>">About</a>
     <a href="<?php echo absolutePath('/blog'); ?>">Blog</a>

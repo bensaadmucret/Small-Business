@@ -18,7 +18,7 @@
     "minimum-stability": "dev",
     "require": {
         "symfony/http-foundation": "6.1.x-dev",
-        "robmorgan/phinx": "dev-master",
+        "robmorgan/phinx": "9999999-dev",
         "psr/container": "2.0.x-dev"
     },
     "require-dev": {

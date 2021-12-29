@@ -41,13 +41,15 @@ class Route
     {
         if (is_string($this->callable)) {
             $params = explode('@', $this->callable);
-            $controller = router::getNameSpace() . $this->getController();
-            $action = $params[1];         
-            $controller = new $controller;        
+            $controller = router::getNameSpace() . $this->getController();           
+            $action = $params[1];  
+            $controller = new $controller();         
+               
+                
           
-            return call_user_func_array([$controller, $action], $this->matches);
+            call_user_func_array([ $controller, $action], $this->matches);
         } else {
-            return call_user_func_array($this->callable, $this->matches);
+            call_user_func_array($this->callable, $this->matches);
         }
     }
 
@@ -55,7 +57,8 @@ class Route
     {
         if (is_string($this->callable)) {
             $params = explode('@', $this->callable);
-            return $params[0];
+            $params = $params[0];
         }
+        return $params;
     }
 }

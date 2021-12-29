@@ -34,4 +34,6 @@ class HomeController extends BaseController
     {
         return $this->render('home/contact');
     }
+
+    
 }

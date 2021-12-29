@@ -20,7 +20,7 @@ final class Admins extends AbstractMigration
     {
         $this->table('admins')
             ->addColumn('username', 'string', ['limit' => 255])
-            ->addColumn('email', 'string', ['limit' => 255])
+            ->addColumn('email', 'string', ['limit' => 255], ['unique' => true])
             ->addColumn('password', 'string', ['limit' => 255])
             ->addColumn('created_at', 'datetime')
             ->addColumn('updated_at', 'datetime', ['null' => true])      

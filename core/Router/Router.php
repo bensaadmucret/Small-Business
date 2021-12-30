@@ -171,9 +171,7 @@ class Router
      */
     public static function getNameSpace(): string
     {
-        if(self::$namespace !== null) {
-            return self::$namespace;
-        }
+        return self::$namespace;
     }
     
     /**

@@ -12,24 +12,28 @@ abstract class BaseController
 {
     public $actions;
     
-    protected $_request;
-    protected $_response;
+    protected $request;
+    protected $response;
     protected $httpClient;
     protected $router;
     protected $container;
+    protected $pdo;
 
     public function __contructor(
-        Request $_request,
-        Response $_response,
-        $_httpClient,
+        Request $request,
+        Response $response,
+        $httpClient,
         $router,
-        $container
+        $container,
+        
     ) {
-        $this->request = new Request();
+        $this->request = Request::createFromGlobals();
         $this->response = new Response();
         $this->httpClient = HttpClient::create();
         $this->router = new Router();
         $this->container = new Container();
+        
+       
     }
 
     public function getContainer()
@@ -71,5 +75,7 @@ abstract class BaseController
         
 
         require_once(APP_PATH.'Layouts'. DS .'default.php');
+
+        
     }
 }

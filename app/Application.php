@@ -8,7 +8,7 @@ use Core\Container\Container;
 class Application
 {
     
-    
+
 
     public function run()
     {
@@ -16,8 +16,11 @@ class Application
         Router::setNameSpace('App\\Controller\\');
            
         $router->add('GET', '/', 'HomeController@index', 'home');
+        $router->add('POST', '/login', 'AuthController@login', 'login');    
         $router->add('GET', '/login', 'AuthController@login', 'login');
-        $router->add('POST', '/login', 'AuthController@login', 'login');
+        
+
+        
         $router->add('GET', '/about', 'HomeController@about', 'about');
         $router->add('GET', '/contact', 'HomeController@contact', 'contact');
         $router->add('GET', '/blog', 'HomeController@blog', 'blog');

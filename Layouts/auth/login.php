@@ -1,12 +1,13 @@
-<h3>Connexion</h3>
-
+<?php echo '<h3>' . $title ?? 'Connexion</h3>'; ?>
+<?php echo '<h3>' . $message ?? ' Connexion </h3>'; ?>
+<?php echo '<div class="alert">'. $error . '</div>' ?? ''; ?>
 <div>
-  <form action="/action_page.php">
-    <label for="fname">Nom</label>
-    <input type="text" id="fname" name="firstname" placeholder="Votre Nom">   
+  <form method="POST">
+    <label for="email">Email</label>
+    <input type="email" id="email" name="email" placeholder="Email" autofocus>   
 
-    <label for="email">email</label>
-    <input type="text" id="email" name="email" placeholder="Votre email">
+    <label for="password">Mot de passe</label>
+    <input type="password" id="email" name="password" placeholder="Mot de passe">
 
     
   

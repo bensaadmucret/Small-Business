@@ -57,8 +57,7 @@ class Route
     {
         if (is_string($this->callable)) {
             $params = explode('@', $this->callable);
-            $params = $params[0];
+            return $params[0];
         }
-        return $params;
     }
 }

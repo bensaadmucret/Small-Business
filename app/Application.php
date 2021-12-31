@@ -18,6 +18,8 @@ class Application
         $router->add('GET', '/', 'HomeController@index', 'home');
         $router->add('POST', '/login', 'AuthController@login', 'login');    
         $router->add('GET', '/login', 'AuthController@login', 'login');
+        $router->add('GET', '/dashboard', 'AuthController@dashboard', 'dashboard');
+        $router->add('GET', '/logout', 'AuthController@logout', 'logout');
         
 
         

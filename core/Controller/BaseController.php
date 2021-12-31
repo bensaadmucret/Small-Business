@@ -2,37 +2,27 @@
 
 namespace Core\Controller;
 
-use Core\Router\Router;
-use Core\Container\Container;
+
 use Symfony\Component\HttpClient\HttpClient;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 
 abstract class BaseController
 {
     public $actions;
     
     protected $request;
-    protected $response;
-    protected $httpClient;
-    protected $router;
-    protected $container;
-    protected $pdo;
+  
 
     public function __contructor(
         Request $request,
-        Response $response,
-        $httpClient,
-        $router,
-        $container,
+       
         
     ) {
         $this->request = Request::createFromGlobals();
-        $this->response = new Response();
-        $this->httpClient = HttpClient::create();
-        $this->router = new Router();
-        $this->container = new Container();
-        
+      
+    
        
     }
 
@@ -44,11 +34,11 @@ abstract class BaseController
     
        
     
-    public function redirect(string $method, string $url, int $statusCode): bool
+    public function redirect( string $url, int $statusCode): bool
     {
         try {
-            $response = $this->httpClient->request($method, $url, $statusCode);
-            return $response;
+            $redirection = new RedirectResponse($url, $statusCode);
+            return $redirection->send();
         } catch (\Exception $e) {
             return false;
         }

@@ -282,6 +282,6 @@ input[type=email], select {
   .alert {
     padding: 20px;
     background-color: #f44336;
-    color: white;
+    color: rgb(110, 42, 42);
     margin-bottom: 15px;
   }

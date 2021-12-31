@@ -1,0 +1,30 @@
+{
+  "name": "small-business",
+  "version": "1.0.0",
+  "description": "Eboutique ",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "start": "node-sass --output-style compressed --source-map true --source-map-contents true --watch public/assets/scss/style.scss public/assets/css/style.css"},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bensaadmucret/Small-Business.git"
+  },
+  "keywords": [
+    "framwork",
+    "php",
+    "e-boutique",
+    "sass"
+  ],
+  "author": "Bensaad Mohammed",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bensaadmucret/Small-Business/issues"
+  },
+  "homepage": "https://github.com/bensaadmucret/Small-Business#readme",
+  "dependencies": {
+    "node-sass": "^7.0.1"
+  }
+}

@@ -1,7 +1,11 @@
 <?php 
 
-echo '<h3>' . $title ?? 'Connexion</h3>';
-echo '<h3>' . $message ?? ' Connexion </h3>';
-echo '<div class="alert">'. $error . '</div>' ?? '';
-echo '<div>';
+
+
 echo 'Dashboard';
+
+echo '<h3>' . $message ?? '' . '</h3>';
+echo '<h3>'. $session['username'] . '</h3>';
+echo $url;
+
+

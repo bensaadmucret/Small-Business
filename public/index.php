@@ -10,8 +10,7 @@ try {
     echo $e->getMessage();
 }
 
-
-
+    
 $app = AppFactory::create();
 
 $app->run();

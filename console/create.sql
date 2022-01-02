@@ -8,6 +8,8 @@
       `username` varchar(255) NOT NULL,
       `password` varchar(255) NOT NULL,
       `email` varchar(255) NOT NULL UNIQUE,
+      'role' varchar(255) NOT NULL,
+      'status' BOOLEAN NOT NULL DEFAULT 1,
       `created_at` datetime NOT NULL,
       `updated_at` datetime NOT NULL,
       PRIMARY KEY (`id`)

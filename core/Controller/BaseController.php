@@ -3,6 +3,7 @@
 namespace Core\Controller;
 
 
+use Core\FormBuilder\FormBuilder;
 use Symfony\Component\HttpClient\HttpClient;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -10,29 +11,23 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 
 abstract class BaseController
 {
-    public $actions;
     
     protected $request;
+    protected $connection;
+    protected $formBuilder;
   
 
     public function __contructor(
-        Request $request,
-       
+      
         
     ) {
         $this->request = Request::createFromGlobals();
-      
-    
+        $this->connection = Connection::get()->connect();
+        $this->formBuilder = new FormBuilder(); 
        
     }
 
-    public function getContainer()
-    {
-        return $this->container;
-    }
-
-    
-       
+        
     
     public function redirect( string $url, int $statusCode): bool
     {
@@ -50,7 +45,7 @@ abstract class BaseController
      * @param array $data
      * @return Response
      */
-    protected function render(string $tpl, array $parameters = [])
+    protected function render(string $tpl, array $parameters = [], string $model = null, )
     {
         if ($parameters) {
             extract($parameters);
@@ -60,12 +55,11 @@ abstract class BaseController
      
 
         require_once(APP_PATH.'Layouts'. DS . $tpl . '.php');
-     
         $content = ob_get_clean();
-        
-
-        require_once(APP_PATH.'Layouts'. DS .'default.php');
-
+        $view =  $model ?? 'default';
+        require_once(APP_PATH.'Layouts'. DS . $view . '.php');
         
     }
+
+    
 }

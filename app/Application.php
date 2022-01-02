@@ -20,6 +20,16 @@ class Application
         $router->add('GET', '/login', 'AuthController@login', 'login');
         $router->add('GET', '/dashboard', 'AuthController@dashboard', 'dashboard');
         $router->add('GET', '/logout', 'AuthController@logout', 'logout');
+
+        $router->add('GET', '/product', 'ProductController@index', 'product_index');
+        $router->add('GET', '/product/:id', 'ProductController@show', 'product_show');
+        $router->add('GET', '/product/create', 'ProductController@create', 'product_create');
+        $router->add('POST', '/product/create', 'ProductController@store', 'product_store');
+        $router->add('GET', '/product/:id/edit', 'ProductController@edit', 'product_edit');
+        $router->add('POST', '/product/:id/edit', 'ProductController@update', 'product_update');
+        $router->add('GET', '/product/:id/delete', 'ProductController@delete', 'product_delete');
+        $router->add('POST', '/product/:id/delete', 'ProductController@destroy', 'product_destroy');
+
         
 
         

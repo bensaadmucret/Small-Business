@@ -11,22 +11,11 @@
     <title>Non !</title>
 </head>
 <body>
-<div class="main">
-    <div class="container">
+<div class="main w-full h-full">
+    <div class="container ">
      <?php echo  $content; ?>
-    </div>
-   <div class="sidenav">
-     <a href="<?php echo absolutePath('/'); ?>"><i class="fas fa-cloud" style="font-size:60px;color:lightblue;"></i></a>  
-    <a href="<?php echo absolutePath('/'); ?>">Home</a>   
-    <a href="<?php echo absolutePath('/about'); ?>">About</a>
-    <a href="<?php echo absolutePath('/blog'); ?>">Blog</a>
-    <a href="<?php echo absolutePath('/contact'); ?>">Contact</a>
-    <button class="btn"> Promos !</button>   
-    <button class="btn pannier"> Pannier </button> 
-    
     </div>
    
 </div>
-
 </body>
 </html>

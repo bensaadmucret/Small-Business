@@ -45,7 +45,7 @@ class AuthController extends BaseController
             'title' => 'Login',
             'message' => 'Please login to access the admin area.',
             'form' => $form->create(),          
-        ]);
+        ], 'admin');
     }
 
     private function loginPost()
@@ -63,7 +63,7 @@ class AuthController extends BaseController
                     'error' => Session::get_flash('error'),
                     'form' => $form->create(),
                     'email' => $email,
-                ]);
+                ], 'admin');
               
             } else {
                 try {
@@ -94,7 +94,7 @@ class AuthController extends BaseController
                             'error' => Session::get_flash('error'),
                             'form' => $form->create(),
                             'email' => $email,
-                        ]);
+                        ], 'admin');
                     }
                 } else {
                     Session::set_session('error', 'identifiant invalide.');
@@ -104,7 +104,7 @@ class AuthController extends BaseController
                         'error' => Session::get_flash('error'),
                         'form' => $form->create(),
                         'email' => $email,
-                    ]);
+                        ],'admin');
                 }
             }
         
@@ -118,7 +118,7 @@ class AuthController extends BaseController
             'title' => 'Login',
             'message' => 'You have been logged out.',
             'form' => $this->form()->create(),
-        ]);
+        ],'admin');
     }
 
     public function dashboard()
@@ -134,7 +134,7 @@ class AuthController extends BaseController
                 'message' => 'Welcome to the dashboard.',
                 'session' => Session::get_session('admin'),
                 'url' => $router->generateUri('dashboard'),
-            ]);
+            ], 'admin');
         }
         
         
@@ -146,8 +146,9 @@ class AuthController extends BaseController
         $email = $request->get('email');
         $form = new FormBuilder();
         $form->startForm('/login', 'POST');
-        $form->addFor( 'Email', 'Connexion');
-        $form->addEmail('email',  $email ?? '', ['label' => 'Email', 'required' => true, 'autofocus', 'placeholder' => 'Votre email']);
+        $form->addFor( 'Email', 'Votre email');
+        $form->addEmail('email',  $email ?? '', ['label' => 'Email', 'required' => true, 'autofocus', 'placeholder' => 'exemple@domain.com']);
+        $form->addFor( 'password', 'Mot de passe');
         $form->addPassword('password', 'password', ['label' => 'Password', 'required' => true]);
         $form->addBouton('Envoyer',  ['label' => 'Login', 'class' => 'btn']);
         $form->endForm();

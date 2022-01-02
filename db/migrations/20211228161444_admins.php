@@ -22,9 +22,21 @@ final class Admins extends AbstractMigration
             ->addColumn('username', 'string', ['limit' => 255])
             ->addColumn('email', 'string', ['limit' => 255], ['unique' => true])
             ->addColumn('password', 'string', ['limit' => 255])
+            ->addColumn('role', 'string', ['limit' => 255])
+            ->addColumn('status', 'boolean', ['default' => true])
             ->addColumn('created_at', 'datetime')
             ->addColumn('updated_at', 'datetime', ['null' => true])      
             ->create();
+
+    }
+    
+    /**
+     * Migrate Down.
+     */
+    public function down()
+    {
+        $this->dropTable('admins');
+
 
     }
 }

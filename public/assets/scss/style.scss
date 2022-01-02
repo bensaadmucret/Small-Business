@@ -1,8 +1,46 @@
-body{
-    font-family: 'Open Sans', sans-serif;
-    font-size: 16px;
-    line-height: 1.5;
-    color: #333;
-    background-color: red;
+@import url(https://fonts.googleapis.com/css?family=Roboto:300,400,500,700);
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    min-width: 0;
+    min-height: 0;
 }
 
+
+:root {
+    --container-padding: 20px;
+    --container-width: calc(100% - var(--container-padding) * 2);
+}
+.container {
+    box-sizing: border-box;
+    width: 100%;
+    padding-left: calc(50% - var(--container-width) / 2);
+    padding-right: calc(50% - var(--container-width) / 2);
+}
+
+@media only screen and (min-width: 1040px) {
+    :root {
+        --container-width: 1000px;
+    }
+}
+
+
+html,body{
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1rem;
+    font-weight: 300;
+    line-height: 1.5;
+    color: rgb(77, 77, 77);
+    background: rgb(255, 255, 255);
+    font-smooth: auto;
+    -webkit-font-smoothing : antialiased;
+}
+
+@import '../../../node_modules/milligram/src/milligram.sass';
+@import 'color.scss';
+@import 'font.scss';
+@import 'utiliter.scss';

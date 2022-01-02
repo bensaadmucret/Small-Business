@@ -7,7 +7,8 @@
     "test": "tests"
   },
   "scripts": {
-    "start": "node-sass --output-style compressed --source-map true --source-map-contents true --watch public/assets/scss/style.scss public/assets/css/style.css"},
+    "start": "node-sass --output-style compressed --source-map true --source-map-contents true --watch public/assets/scss/style.scss public/assets/css/style.css"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/bensaadmucret/Small-Business.git"
@@ -25,6 +26,7 @@
   },
   "homepage": "https://github.com/bensaadmucret/Small-Business#readme",
   "dependencies": {
+    "milligram": "^1.4.1",
     "node-sass": "^7.0.1"
   }
 }

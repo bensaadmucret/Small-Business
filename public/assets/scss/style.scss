@@ -1,9 +1,9 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700');
 
-//@import '../../../node_modules/milligram/dist/milligram.css';
-//@import 'color.scss';
-//@import 'font.scss';
-//@import 'utiliter.scss';
+@import './../../../node_modules/milligram-scss/src/milligram.scss';
+@import 'color.scss';
+@import 'font.scss';
+@import 'utiliter.scss';
 
 *,
 *::before,

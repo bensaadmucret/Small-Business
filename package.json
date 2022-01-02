@@ -27,6 +27,7 @@
   "homepage": "https://github.com/bensaadmucret/Small-Business#readme",
   "dependencies": {
     "milligram": "^1.4.1",
+    "milligram-scss": "^1.4.1",
     "node-sass": "^7.0.1"
   }
 }

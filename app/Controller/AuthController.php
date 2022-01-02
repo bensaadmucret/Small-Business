@@ -84,6 +84,7 @@ class AuthController extends BaseController
                         Session::start();
                         $_SESSION['admin'] = $admin;
                         $redirection = new RedirectResponse('/dashboard', 302);
+                        return $redirection->send();
                         
                         
                     } else {

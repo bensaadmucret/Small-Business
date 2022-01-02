@@ -17,8 +17,10 @@ abstract class BaseController
     protected $formBuilder;
   
 
-    public function __contructor(
-      
+    public function iniController(
+    Request $request,
+    FormBuilder $formBuilder,
+    Connection $connection 
         
     ) {
         $this->request = Request::createFromGlobals();

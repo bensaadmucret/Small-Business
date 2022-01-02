@@ -18,8 +18,8 @@ class ProductController extends BaseController
     protected $product;
     protected $category;
 
-    public function __contructor(   ){
-        parent::__contructor(  );
+    public function __contructor( ){
+        parent::iniController( $request, $formBuilder, $connection  );
         $this->actions = [
             'index' => 'index',
             'show' => 'show',
@@ -27,9 +27,7 @@ class ProductController extends BaseController
             'edit' => 'edit',
             'delete' => 'delete',
         ];
-        $this->request = Request::createFromGlobals();
-        $this->connection = Connection::get()->connect();
-        $this->formBuilder = new FormBuilder(); 
+        
        
         
     }

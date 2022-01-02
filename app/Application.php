@@ -19,6 +19,7 @@ class Application
         $router->add('POST', '/login', 'AuthController@login', 'login');    
         $router->add('GET', '/login', 'AuthController@login', 'login');
         $router->add('GET', '/dashboard', 'AuthController@dashboard', 'dashboard');
+        $router->add('POST', '/dashboard', 'AuthController@dashboard', 'dashboard');
         $router->add('GET', '/logout', 'AuthController@logout', 'logout');
 
         $router->add('GET', '/product', 'ProductController@index', 'product_index');

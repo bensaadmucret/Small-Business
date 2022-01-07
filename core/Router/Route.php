@@ -53,7 +53,7 @@ class Route
         }
     }
 
-    public function getController()
+    private function getController()
     {
         if (is_string($this->callable)) {
             $params = explode('@', $this->callable);

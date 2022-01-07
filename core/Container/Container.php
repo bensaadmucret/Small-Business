@@ -9,6 +9,8 @@ use Psr\Container\ContainerInterface;
 use Core\Container\ResolverContainerInterface;
 use Core\Container\Exception\ExceptionContainer;
 
+
+
 class Container implements ContainerInterface
 {
 
@@ -59,6 +61,7 @@ class Container implements ContainerInterface
      */
     public function resolve(ReflectionMethod $method)
     {
+        //ReflectionProperty::isPublic — Vérifie si la propriété est publique
         if (!$method->isPublic()) {
             throw new ExceptionContainer('Method is not public');
         }
@@ -70,9 +73,6 @@ class Container implements ContainerInterface
         $this->services[$method->getDeclaringClass()->getName()] = $method->invoke(null, ...$args);
         return $method->invokeArgs(null, $args);
     }
-
-
-
 
 
     /**

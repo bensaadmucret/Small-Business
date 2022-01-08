@@ -2,7 +2,7 @@
 require __DIR__ . '/../vendor/autoload.php';
 
 use Core\Database\Connection;
-use Phinx\Console\Command\Create;
+
 
 try {
     $db =   Connection::get()->connect();

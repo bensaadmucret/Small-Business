@@ -36,7 +36,5 @@ final class Admins extends AbstractMigration
     public function down()
     {
         $this->dropTable('admins');
-
-
     }
 }

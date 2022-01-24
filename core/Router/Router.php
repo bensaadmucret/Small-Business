@@ -143,14 +143,7 @@ class Router
         throw new RouterException('No matching routes');
     }
 
-    
-    public function redirect($location)
-    {
-        $response = new Response();
-        $response->headers->set('Location', $location);
-        $response->send();
-    }
-
+   
 
     /**
      * set namespace for controller

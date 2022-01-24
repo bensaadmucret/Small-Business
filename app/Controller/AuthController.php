@@ -119,7 +119,7 @@ class AuthController extends BaseController
             'title' => 'Login',
             'message' => 'You have been logged out.',
             'form' => $this->form()->create(),
-        ],'admin');
+        ],'admin-login');
     }
 
     public function dashboard()
@@ -129,7 +129,7 @@ class AuthController extends BaseController
             $this->redirect('/login', 302);
         }else {
             $router = new \Core\Router\Router();
-            $router->generateUri('/dashboard');
+            dump($url =  $router->generateUri('dashboard'));
             $this->render('auth/dashboard', [
                 'title' => 'Dashboard',
                 'message' => 'Welcome to the dashboard.',

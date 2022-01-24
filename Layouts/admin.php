@@ -34,6 +34,10 @@
             <img width="30" src="assets/avatar.svg" alt="" />
             <!-- <i class="fa fa-user-circle-o" aria-hidden="true"></i> -->
           </a>
+          <a class="text-gray-100"  href="/logout">
+          <i class="fa fa-power-off"></i>
+            <!-- <i class="fa fa-user-circle-o" aria-hidden="true"></i> -->
+          </a>
         </div>
       </nav>
 
@@ -99,7 +103,7 @@
             </div>
           </div>
           <!-- MAIN CARDS ENDS HERE -->
-
+        
           <!-- CHARTS STARTS HERE -->
           <div class="charts">
             <div class="charts__left">
@@ -217,7 +221,7 @@
           </div>
           <div class="sidebar__logout">
             <i class="fa fa-power-off"></i>
-            <a href="#">Log out</a>
+            <a href="/logout">Log out</a>
           </div>
         </div>
       </div>

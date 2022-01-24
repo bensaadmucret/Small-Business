@@ -8,7 +8,7 @@
      * Portabilité : peut être hébergé sur n’importe serveur web et peut donc être migré facilement selon les besoins.
 
 ### Helper
-     * function assets();
+     * function assets(); donne le Chemin de fichier absolu à partir de la racine...
      ''' exemple <link rel="stylesheet" href="<?php echo assets('/assets/css/style.css'); ?>" />
 
 ### Router 

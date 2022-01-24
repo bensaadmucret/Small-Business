@@ -12,6 +12,9 @@
      ''' exemple <link rel="stylesheet" href="<?php echo assets('/assets/css/style.css'); ?>" />
 
 ### Router 
-####  Le routeur se compose de la méthode, du patch, du controler ainsi que du nom de la route
+####  Le routeur se compose :  d'une méthodes HTTP (GET, POST, PUT et DELETE) L'URL à capturer, on pourra faire appel à un controller en mettant par ex : ProductController@index  qui fera appel à la class  ProductController et à la méthode index(), vous pouvez utiliser bien sûr une fonction anonyme en lui passant les paramètres...
+
+>[x] Par exemple : 
+
      ``  $router->add('GET', '/product', 'ProductController@index', 'product_index'); 
           $router->add('GET', '/product/:id', 'ProductController@show', 'product_show');  ``

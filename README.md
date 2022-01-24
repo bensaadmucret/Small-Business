@@ -12,6 +12,6 @@
      ''' exemple <link rel="stylesheet" href="<?php echo assets('/assets/css/style.css'); ?>" />
 
 ### Router 
-#### le router ce comose de la méthode, du path, du controler ainsi que du nom de la route
+####  Le routeur se compose de la méthode, du patch, du controler ainsi que du nom de la route
      ``  $router->add('GET', '/product', 'ProductController@index', 'product_index'); 
           $router->add('GET', '/product/:id', 'ProductController@show', 'product_show');  ``

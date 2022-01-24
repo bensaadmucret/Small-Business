@@ -203,14 +203,6 @@ h6::selection
 {
 	color: #db5246;
 }
-section
-{	
-	margin-top: 4rem;
-	margin-bottom: 4rem;
-	display: block;
-	position: relative;
-	box-sizing: border-box;
-}
 
 .text-center
 {
@@ -881,7 +873,7 @@ section
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: center center;
-	margin-top: 150px;
+	margin-top: 8%;
 }
 .main_slider_content
 {

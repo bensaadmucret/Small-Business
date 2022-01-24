@@ -1,3 +1,8 @@
+/* DROP DATABASE IF EXISTS `app`;*/
+
+  DROP TABLE IF EXISTS `app`;
+
+
 /*Create database if not exists `app`;*/
     CREATE DATABASE IF NOT EXISTS `app`;
     use `app`;
@@ -8,11 +13,11 @@
       `username` varchar(255) NOT NULL,
       `password` varchar(255) NOT NULL,
       `email` varchar(255) NOT NULL UNIQUE,
-      'role' varchar(255) NOT NULL,
-      'status' BOOLEAN NOT NULL DEFAULT 1,
+      `role`varchar(255) NOT NULL,
+      `status` BOOLEAN NOT NULL DEFAULT 1,
       `created_at` datetime NOT NULL,
       `updated_at` datetime NOT NULL,
-      PRIMARY KEY (`id`)
+      PRIMARY KEY (id)
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
     CREATE TABLE IF NOT EXISTS `users` (
@@ -20,11 +25,11 @@
       `username` varchar(255) NOT NULL,
       `password` varchar(255) NOT NULL,
       `email` varchar(255) NOT NULL UNIQUE,
-      'role' varchar(255) NOT NULL,
-      'status' BOOLEAN NOT NULL DEFAULT 1,
+      `role` varchar(255) NOT NULL,
+      `status` BOOLEAN NOT NULL DEFAULT 1,
       `created_at` datetime NOT NULL,
       `updated_at` datetime NOT NULL,
-      PRIMARY KEY (`id`)
+      PRIMARY KEY (id)
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
     /* create table products */
@@ -37,9 +42,8 @@
       `category_id` int(11) NOT NULL,
       `created_at` datetime NOT NULL,
       `updated_at` datetime NOT NULL,
-      PRIMARY KEY (`id`),
-      UNIQUE KEY `name` (`name`)
-      FOREIGN KEY ('category_id') REFERENCES 'categories'('id')      
+      PRIMARY KEY (id),
+      UNIQUE KEY `name` (`name`)  
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
     /* create table categories */
@@ -50,9 +54,9 @@
       `product_id` int(11) NOT NULL,
       `created_at` datetime NOT NULL,
       `updated_at` datetime NOT NULL,
-      PRIMARY KEY (`id`),
+      PRIMARY KEY (id),
       UNIQUE KEY `name` (`name`),
-      FOREIGN KEY ('product_id') REFERENCES 'products'('id')
+      FOREIGN KEY (`product_id`) REFERENCES `products`(id)
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
     /* create table categories_products */
@@ -60,10 +64,10 @@
       `id` int(11) NOT NULL AUTO_INCREMENT,
       `category_id` int(11) NOT NULL,
       `product_id` int(11) NOT NULL,
-      PRIMARY KEY (`id`),
+      PRIMARY KEY (id),
       UNIQUE KEY `category_id_product_id` (`category_id`,`product_id`),
-      FOREIGN KEY ('category_id') REFERENCES 'categories'('id'),
-      FOREIGN KEY ('product_id') REFERENCES 'products'('id')
+      FOREIGN KEY (category_id) REFERENCES `categories`(id),
+      FOREIGN KEY (product_id) REFERENCES `products`(id)
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
     /* create table orders */
@@ -73,8 +77,8 @@
       `status` varchar(255) NOT NULL,
       `created_at` datetime NOT NULL,
       `updated_at` datetime NOT NULL,
-      PRIMARY KEY (`id`),
-      FOREIGN KEY ('user_id') REFERENCES 'users'('id')
+      PRIMARY KEY (id),
+      FOREIGN KEY (`user_id`) REFERENCES `users`(id)
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
     /* create table order_details */
@@ -84,7 +88,7 @@
       `product_id` int(11) NOT NULL,
       `quantity` int(11) NOT NULL,
       `price` int(11) NOT NULL,
-      PRIMARY KEY (`id`)
+      PRIMARY KEY (id)
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
     /* create table adress */
@@ -94,10 +98,23 @@
       `name` varchar(255) NOT NULL,
       `phone` varchar(255) NOT NULL,
       `address` varchar(255) NOT NULL,
+      `address_2` varchar(255) NOT NULL,
+      `city` varchar(255) NOT NULL,
+      `state` varchar(255) NOT NULL,
+      `zip` varchar(255) NOT NULL,
+      `country` varchar(255) NOT NULL,
+      FOREIGN KEY (`user_id`) REFERENCES `users`(id),
       `created_at` datetime NOT NULL,
       `updated_at` datetime NOT NULL,
-      PRIMARY KEY (`id`)
+      PRIMARY KEY (id)
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+
+
+
+
+
 
 
 

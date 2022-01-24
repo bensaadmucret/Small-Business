@@ -14,7 +14,7 @@ if (!defined('APP_PATH')) {
 
 
 // absolute path for css, js, image
-function absolutePath($path)
+function assets($path)
 {
     $httpRequest  = Request::createFromGlobals();
     $baseUrl = $httpRequest->server->get('HTTP_HOST');

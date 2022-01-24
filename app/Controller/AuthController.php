@@ -45,7 +45,7 @@ class AuthController extends BaseController
             'title' => 'Login',
             'message' => 'Please login to access the admin area.',
             'form' => $form->create(),          
-        ], 'admin');
+        ], 'admin-login');
     }
 
     private function loginPost()
@@ -63,7 +63,7 @@ class AuthController extends BaseController
                     'error' => Session::get_flash('error'),
                     'form' => $form->create(),
                     'email' => $email,
-                ], 'admin');
+                ], 'admin-login');
               
             } else {
                 try {
@@ -95,7 +95,7 @@ class AuthController extends BaseController
                             'error' => Session::get_flash('error'),
                             'form' => $form->create(),
                             'email' => $email,
-                        ], 'admin');
+                        ], 'admin-login');
                     }
                 } else {
                     Session::set_session('error', 'identifiant invalide.');
@@ -105,7 +105,7 @@ class AuthController extends BaseController
                         'error' => Session::get_flash('error'),
                         'form' => $form->create(),
                         'email' => $email,
-                        ],'admin');
+                        ],'admin-login');
                 }
             }
         

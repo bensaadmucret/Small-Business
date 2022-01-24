@@ -6,19 +6,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" type="text/css" href="<?php echo absolutePath('/assets/css/main_styles.css'); ?>">
-<link rel="stylesheet" type="text/css" href="<?php echo absolutePath('/assets/css/categories_responsive.css'); ?>">
-<link rel="stylesheet" type="text/css" href="<?php echo absolutePath('/assets/css/responsive.css'); ?>">
-<link rel="stylesheet" type="text/css" href="<?php echo absolutePath('/assets/css/contact_responsive.css'); ?>">
-<link rel="stylesheet" type="text/css" href="<?php echo absolutePath('/assets/css/contact_styles.css'); ?>">
-<link rel="stylesheet" type="text/css" href="<?php echo absolutePath('/assets/css/single_responsive.css'); ?>">
-<link rel="stylesheet" type="text/css" href="<?php echo absolutePath('/assets/css/single_styles.css'); ?>">
-<link rel="stylesheet" type="text/css" href="<?php echo absolutePath('/assets/plugins/font-awesome-4.7.0/css/font-awesome.min.css'); ?>" >
-<link rel="stylesheet" type="text/css" href="<?php echo absolutePath('/assets/plugins/OwlCarousel2-2.2.1/owl.carousel.css'); ?>">
-<link rel="stylesheet" type="text/css" href="<?php echo absolutePath('/assets/plugins/OwlCarousel2-2.2.1/owl.theme.default.css'); ?>">
-<link rel="stylesheet" type="text/css" href="<?php echo absolutePath('/assets/plugins/OwlCarousel2-2.2.1/animate.css'); ?>">
-<link rel="stylesheet" type="text/css" href="<?php echo absolutePath('/assets/plugins/themify-icons/themifly-icons.css'); ?>">
-<link rel="stylesheet" type="text/css" href="<?php echo absolutePath('/assets/css/responsive.css'); ?>">
+<link rel="stylesheet" type="text/css" href="<?php echo assets('/assets/css/main_styles.css'); ?>">
+<link rel="stylesheet" type="text/css" href="<?php echo assets('/assets/css/categories_responsive.css'); ?>">
+<link rel="stylesheet" type="text/css" href="<?php echo assets('/assets/css/responsive.css'); ?>">
+<link rel="stylesheet" type="text/css" href="<?php echo assets('/assets/css/contact_responsive.css'); ?>">
+<link rel="stylesheet" type="text/css" href="<?php echo assets('/assets/css/contact_styles.css'); ?>">
+<link rel="stylesheet" type="text/css" href="<?php echo assets('/assets/css/single_responsive.css'); ?>">
+<link rel="stylesheet" type="text/css" href="<?php echo assets('/assets/css/single_styles.css'); ?>">
+<link rel="stylesheet" type="text/css" href="<?php echo assets('/assets/plugins/font-awesome-4.7.0/css/font-awesome.min.css'); ?>" >
+<link rel="stylesheet" type="text/css" href="<?php echo assets('/assets/plugins/OwlCarousel2-2.2.1/owl.carousel.css'); ?>">
+<link rel="stylesheet" type="text/css" href="<?php echo assets('/assets/plugins/OwlCarousel2-2.2.1/owl.theme.default.css'); ?>">
+<link rel="stylesheet" type="text/css" href="<?php echo assets('/assets/plugins/OwlCarousel2-2.2.1/animate.css'); ?>">
+<link rel="stylesheet" type="text/css" href="<?php echo assets('/assets/plugins/themify-icons/themifly-icons.css'); ?>">
+<link rel="stylesheet" type="text/css" href="<?php echo assets('/assets/css/responsive.css'); ?>">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.0/css/bootstrap-grid.min.css">
 
 
@@ -216,13 +216,13 @@
 
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-<script src="<?php echo absolutePath('/assets/js/jquery-3.2.1.min.js'); ?>"></script>
-<script src="<?php echo absolutePath('/assets/styles/bootstrap4/popper.js'); ?>"></script>
-<script src="<?php echo absolutePath('/assets/styles/bootstrap4/bootstrap.min.js'); ?>"></script>
-<script src="<?php echo absolutePath('/assets/plugins/Isotope/isotope.pkgd.min.js'); ?>"></script>
-<script src="<?php echo absolutePath('/assets/plugins/OwlCarousel2-2.2.1/owl.carousel.js'); ?>"></script>
-<script src="<?php echo absolutePath('/assets/plugins/easing/easing.js'); ?>"></script>
-<script src="<?php echo absolutePath('/assets/js/custom.js'); ?>"></script>
+<script src="<?php echo assets('/assets/js/jquery-3.2.1.min.js'); ?>"></script>
+<script src="<?php echo assets('/assets/styles/bootstrap4/popper.js'); ?>"></script>
+<script src="<?php echo assets('/assets/styles/bootstrap4/bootstrap.min.js'); ?>"></script>
+<script src="<?php echo assets('/assets/plugins/Isotope/isotope.pkgd.min.js'); ?>"></script>
+<script src="<?php echo assets('/assets/plugins/OwlCarousel2-2.2.1/owl.carousel.js'); ?>"></script>
+<script src="<?php echo assets('/assets/plugins/easing/easing.js'); ?>"></script>
+<script src="<?php echo assets('/assets/js/custom.js'); ?>"></script>
 </body>
 
 </html>

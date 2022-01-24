@@ -9,7 +9,7 @@
       integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="<?php echo absolutePath('/assets/css/style.css'); ?>" />
+    <link rel="stylesheet" href="<?php echo assets('/assets/css/style.css'); ?>" />
     <title>CSS GRID DASHBOARD</title>
   </head>
   <body id="body">
@@ -223,6 +223,6 @@
       </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-    <script src="<?php echo absolutePath('/assets/js/main.js'); ?>""></script>
+    <script src="<?php echo assets('/assets/js/main.js'); ?>""></script>
   </body>
 </html>

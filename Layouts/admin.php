@@ -116,7 +116,7 @@
               </div>
               <div id="apex1"></div>
             </div>
-
+ 
             <div class="charts__right">
               <div class="charts__right__title">
                 <div>

@@ -19,6 +19,8 @@ class Router
         $request = Request::createFromGlobals();
         $this->url = $request->getPathInfo();
         $this->method = $request->getMethod();
+       
+        
     }
 
 
@@ -31,9 +33,13 @@ class Router
      */
     public function add(string $method, string $path, $callable, string $name)
     {
-        $route = new Route($method, $path, $callable, $name);
-        $this->routes[] = [$route];
+        $route = new Route($method, $path, $callable, $name);     
+        $this->routes[] = [$route];    
+       
+      
     }
+
+    
 
 
     /**
@@ -69,29 +75,7 @@ class Router
     }
     
     
-    /**
-     * Génère l'url à partir d'un nom de route
-     * @param string $name
-     * @param array $params
-     * @return string
-     */
-    public function generateUri($name)
-    {
-        $html = '';
-
-        for ($i = 0; $i < count($this->routes); $i++) {
-            foreach ($this->routes[$i] as $route) {
-                if ($route->name === $name):
-                $is_url = $route->path == '/' ? $route->path : '/' . $route->path;
-                $html = '<a href="' . $is_url . '">' . $route->name . '</a>';
-                endif;
-            }
-        }
-          
-       
-        return $html;
-    }
-    
+        
 
 
     /**
@@ -143,7 +127,9 @@ class Router
         throw new RouterException('No matching routes');
     }
 
-   
+    
+    
+
 
     /**
      * set namespace for controller

@@ -43,7 +43,7 @@ class Route
             $params = explode('@', $this->callable);
             $controller = router::getNameSpace() . $this->getController();           
             $action = $params[1];  
-            $controller = new $controller();         
+            $controller = new $controller();    
                
                 
           

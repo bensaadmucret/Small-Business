@@ -14,7 +14,7 @@ class Application
     {
         $router = new Router();
         Router::setNameSpace('App\\Controller\\');
-           
+        
         $router->add('GET', '/', 'HomeController@index', 'home');
         $router->add('POST', '/login', 'AuthController@login', 'login');    
         $router->add('GET', '/login', 'AuthController@login', 'login');

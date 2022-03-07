@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use Core\Router\Router;
 use Core\Session\Session;
 use Core\Database\Connection;
 use Core\FormBuilder\FormBuilder;
@@ -128,16 +129,14 @@ class AuthController extends BaseController
         if(!Session::get_session('admin')) {
             $this->redirect('/login', 302);
         }else {
-            $router = new \Core\Router\Router();
-            dump($url =  $router->generateUri('dashboard'));
+            $router = new Router();
+          
             $this->render('auth/dashboard', [
                 'title' => 'Dashboard',
                 'message' => 'Welcome to the dashboard.',
                 'session' => Session::get_session('admin'),
-                'url' => $router->generateUri('dashboard'),
             ], 'admin');
         }
-        
         
     }
 

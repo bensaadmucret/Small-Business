@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use Core\Flash\Flash;
 use Core\Router\Router;
 use Core\Session\Session;
 use Core\Database\Connection;
@@ -12,21 +13,26 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 
 class AuthController extends BaseController
 {
+    public $session;
 
     public function __contruct()
     {
-        parent::__construct();
-        $session = new Session();
+        
+        $this->session = new Session();
+        $this->session->start();
+       
+        
        
       
         
     }
     public function login()
     {
-        Session::start();
+      
+       $session = new Session();
+         $session->start();
        
-       
-        if( Session::get_session('admin')) {        
+        if( $session->get('admin')) {        
             $redirection = new RedirectResponse('/dashboard', 302);
             return $redirection->send();
         }
@@ -51,17 +57,18 @@ class AuthController extends BaseController
 
     private function loginPost()
     {
+        $session = new Session();
         $request = Request::createFromGlobals();       
         $email = $request->get('email');
         $password = $request->get('password');
             $form = $this->form();
 
             if($email == '' || $password == '') {
-                Session::set_session('error', 'identifiant invalide.');                     
+                $this->session->set('error', 'identifiant invalide.');                     
                 $this->render('auth/login', [
                     'title' => 'Login',
                     'message' => 'Please login to access the admin area.',
-                    'error' => Session::get_flash('error'),
+                    'error' => Flash::getMessage('error'),
                     'form' => $form->create(),
                     'email' => $email,
                 ], 'admin-login');
@@ -82,28 +89,28 @@ class AuthController extends BaseController
               
                 if($admin) {
                     if(password_verify($password, $admin['password'])) {
-                        Session::start();
+                        $this->session->start();
                         $_SESSION['admin'] = $admin;
                         $redirection = new RedirectResponse('/dashboard', 302);
                         return $redirection->send();
                         
                         
                     } else {
-                       Session::set_session('error', 'identifiant invalide.');                     
+                       $session->set('error', 'identifiant invalide.');                     
                         $this->render('auth/login', [
                             'title' => 'Login',
                             'message' => 'Please login to access the admin area.',
-                            'error' => Session::get_flash('error'),
+                            'error' => Flash::getMessage('error'),
                             'form' => $form->create(),
                             'email' => $email,
                         ], 'admin-login');
                     }
                 } else {
-                    Session::set_session('error', 'identifiant invalide.');
+                    $session->set('error', 'identifiant invalide.');
                         $this->render('auth/login', [
                         'title' => 'Login',
                         'message' => 'Please login to access the admin area.',
-                        'error' => Session::get_flash('error'),
+                        'error' => Flash::getMessage('error'),
                         'form' => $form->create(),
                         'email' => $email,
                         ],'admin-login');
@@ -114,8 +121,8 @@ class AuthController extends BaseController
 
     public function logout()
     {
-        Session::start();
-        Session::destroy_session('admin');
+        $this->session->start();
+        $this->session->remove('admin');
         $this->render('auth/login', [
             'title' => 'Login',
             'message' => 'You have been logged out.',
@@ -125,8 +132,9 @@ class AuthController extends BaseController
 
     public function dashboard()
     {
-        Session::start();
-        if(!Session::get_session('admin')) {
+        $session = new Session();
+        $session->start();
+        if(!$session->get('admin')) {
             $this->redirect('/login', 302);
         }else {
             $router = new Router();
@@ -134,7 +142,7 @@ class AuthController extends BaseController
             $this->render('auth/dashboard', [
                 'title' => 'Dashboard',
                 'message' => 'Welcome to the dashboard.',
-                'session' => Session::get_session('admin'),
+                'session' => $this->session->get('admin'),
             ], 'admin');
         }
         

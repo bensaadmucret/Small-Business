@@ -26,6 +26,8 @@ abstract class BaseController
         $this->request = Request::createFromGlobals();
         $this->connection = Connection::get()->connect();
         $this->formBuilder = new FormBuilder(); 
+        $this->session = new Session();
+        $this->session->start();
        
     }
 

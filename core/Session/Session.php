@@ -2,66 +2,68 @@
 
 namespace Core\Session;
 
-class Session
+use Core\Session\SessionInterface;
+
+class Session implements SessionInterface
 {
-    public static function start(): void
+    private bool $isStarted = false;
+
+    public function isStarted(): bool
     {
-        if(isset($_SESSION)) {
-            return;
-        }else{
-            session_start();
+        $this->isStarted = session_status() === PHP_SESSION_ACTIVE;
+
+        return $this->isStarted;
+    }
+
+    public function start(): bool
+    {
+        if ($this->isStarted) {
+            return true;
         }
-        
-    }
 
-    public static function get_session(string $name)
-    {
-        if (!isset($_SESSION[$name])) {
-            $_SESSION[$name] = [];
+        if (session_status() === PHP_SESSION_ACTIVE) {
+            $this->isStarted = true;
+
+            return true;
         }
-        return $_SESSION[$name];
+
+        session_start();
+        $this->isStarted = true;
+
+        return true;
     }
 
-    /**
-     * Creation of a session variable
-     *
-     * @param string $name
-     * @param [type] $data
-     * @return void
-     */
-    public static function set_session(string $name, $data)
+    public function has(string $key): bool
     {
-        $_SESSION[$name] = $data;
+        return array_key_exists($key, $_SESSION);
     }
 
-    public static function destroy_session(string $name)
+    public function get(string $key, $default = null): mixed
     {
-        unset($_SESSION[$name]);
+        if ($this->has($key)) {
+            return $_SESSION[$key];
+        }
+
+        return $default;
     }
-    
-    public static function destroy_all_sessions()
+
+    public function set(string $key, mixed $value): void
+    {
+        $_SESSION[$key] = $value;
+    }
+
+    public function clear(): void
     {
         $_SESSION = [];
     }
-    
-    public static function destroy_all_sessions_except(array $except)
-    {
-        foreach ($_SESSION as $key => $value) {
-            if (!in_array($key, $except)) {
-                unset($_SESSION[$key]);
-            }
-        }
-    }
 
-    public  static function get_flash(string $name)
+    public function remove(string $key): void
     {
-        if (!isset($_SESSION[$name])) {
-            return null;
+        if ($this->has($key)) {
+            unset($_SESSION[$key]);
         }
-        $flash = $_SESSION[$name];
-        unset($_SESSION[$name]);
-        return $flash;
     }
- 
-  
 }
+
+
+

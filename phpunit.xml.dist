@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<phpunit bootstrap="vendor/autoload.php">
+<phpunit colors="true" bootstrap="vendor/autoload.php"
+         cacheResult="false" stderr="true">
     <testsuites>
-        <testsuite name="MediaManger">
-            <file>tests\Container\testContainer.php</file>
-            
+        <testsuite name="Tests">
+            <directory>tests</directory>
         </testsuite>
     </testsuites>
 </phpunit>

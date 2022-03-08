@@ -61,7 +61,7 @@ class AuthController extends BaseController
         $request = Request::createFromGlobals();       
         $email = $request->get('email');
         $password = $request->get('password');
-            $form = $this->form();
+        $form = $this->form();
 
             if($email == '' || $password == '') {
                 $this->session->set('error', 'identifiant invalide.');                     

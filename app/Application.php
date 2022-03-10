@@ -44,7 +44,7 @@ class Application
         $container->set('Session', new \Core\Session\Session);
          $container->set('Auth', new \Core\Auth\Auth);
           $container->set('Database', new \Core\Database\Connection);
-      //  $container->set('Router', new \Core\Router\Router);
+        $container->set('Router', new \Core\Router\Router);
       //  $container->set('View', new \Core\View\View);
      //   $container->set('Validator', new \Core\Validator\Validator);
           $container->set('Flash', new \Core\Flash\Flash);

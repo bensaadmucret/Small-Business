@@ -2,6 +2,8 @@
 
 namespace Core\Router;
 
+\define('ABSOLUTE_PATH', $_SERVER['HTTP_HOST']);
+
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -34,9 +36,9 @@ class Router
     public function add(string $method, string $path, $callable, string $name)
     {
         $route = new Route($method, $path, $callable, $name);     
-        $this->routes[] = [$route];    
-       
-      
+        $this->routes[] = [$route]; 
+         
+            
     }
 
     

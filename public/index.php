@@ -2,18 +2,23 @@
 
 require __DIR__ . '/../vendor/autoload.php';
 use App\factory\AppFactory;
-use Core\Database\Connection;
+//use Core\Database\Connection;
 
-try {
-    $db =   Connection::get()->connect();
-} catch (\PDOException $e) {
-    echo $e->getMessage();
-}
 
     
 $app = AppFactory::create();
 
 $container = $app::getContainer();
+$container->get('Database')->connect();
+
+//dump($_SERVER['HTTP_HOST']);
+
+//dump($container->get('Router')->getPath());
+//dump($container->get('Router'));
+
+
 
 $app::run();
+
+
 

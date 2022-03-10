@@ -3,6 +3,8 @@
 namespace Core\Controller;
 
 
+use Core\Session\Session;
+use Core\Database\Connection;
 use Core\FormBuilder\FormBuilder;
 use Symfony\Component\HttpClient\HttpClient;
 use Symfony\Component\HttpFoundation\Request;
@@ -15,14 +17,10 @@ abstract class BaseController
     protected $request;
     protected $connection;
     protected $formBuilder;
+    protected $session;
   
 
-    public function iniController(
-    Request $request,
-    FormBuilder $formBuilder,
-    Connection $connection 
-        
-    ) {
+    public function __construct() {
         $this->request = Request::createFromGlobals();
         $this->connection = Connection::get()->connect();
         $this->formBuilder = new FormBuilder(); 

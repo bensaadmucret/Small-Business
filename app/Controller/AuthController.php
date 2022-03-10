@@ -3,40 +3,31 @@
 namespace App\Controller;
 
 use Core\Flash\Flash;
-use Core\Router\Router;
-use Core\Session\Session;
-use Core\Database\Connection;
-use Core\FormBuilder\FormBuilder;
 use Core\Controller\BaseController;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
 class AuthController extends BaseController
 {
-    public $session;
+    
 
-    public function __contruct()
+    public function __construct()
     {
-        
-        $this->session = new Session();
-        $this->session->start();
-       
-        
-       
+        parent::__construct();
       
-        
     }
+
+
+
     public function login()
     {
-      
-       $session = new Session();
-         $session->start();
-       
-        if( $session->get('admin')) {        
+      $this->session;
+           
+        if( $this->session->get('admin')) {        
             $redirection = new RedirectResponse('/dashboard', 302);
             return $redirection->send();
         }
-        $request = Request::createFromGlobals();
+       
+        $request = $this->request;
         $form = $this->form();
         if($request->isMethod('post')){
                 
@@ -57,8 +48,8 @@ class AuthController extends BaseController
 
     private function loginPost()
     {
-        $session = new Session();
-        $request = Request::createFromGlobals();       
+        $session = $this->session;
+        $request = $this->request;
         $email = $request->get('email');
         $password = $request->get('password');
         $form = $this->form();
@@ -74,13 +65,9 @@ class AuthController extends BaseController
                 ], 'admin-login');
               
             } else {
-                try {
-                    $db = Connection::get()->connect();
-                } catch (\PDOException $e) {
-                    echo $e->getMessage();
-                }
+                $db =  $this->connection;               
                
-                $query = $db->prepare('SELECT * FROM admins WHERE email = :email');               
+                $query = $db->prepare('SELECT * FROM users WHERE email = :email');               
                 $query->execute([
                     'email' => $email,
                 ]);
@@ -89,8 +76,7 @@ class AuthController extends BaseController
               
                 if($admin) {
                     if(password_verify($password, $admin['password'])) {
-                        $this->session->start();
-                        $_SESSION['admin'] = $admin;
+                        $session->set('admin', $admin);
                         $redirection = new RedirectResponse('/dashboard', 302);
                         return $redirection->send();
                         
@@ -120,9 +106,8 @@ class AuthController extends BaseController
     }
 
     public function logout()
-    {
-        $this->session->start();
-        $this->session->remove('admin');
+    {   $session = $this->session;
+        $session->remove('admin');
         $this->render('auth/login', [
             'title' => 'Login',
             'message' => 'You have been logged out.',
@@ -132,17 +117,16 @@ class AuthController extends BaseController
 
     public function dashboard()
     {
-        $session = new Session();
-        $session->start();
+        $session = $this->session;
+        
         if(!$session->get('admin')) {
             $this->redirect('/login', 302);
         }else {
-            $router = new Router();
-          
+                      
             $this->render('auth/dashboard', [
                 'title' => 'Dashboard',
                 'message' => 'Welcome to the dashboard.',
-                'session' => $this->session->get('admin'),
+                'session' => $session->get('admin'),
             ], 'admin');
         }
         
@@ -150,9 +134,9 @@ class AuthController extends BaseController
 
     private function form()
     { 
-        $request = Request::createFromGlobals();       
+        $request = $this->request;       
         $email = $request->get('email');
-        $form = new FormBuilder();
+        $form = $this->formBuilder;
         $form->startForm('/login', 'POST');
         $form->addFor( 'Email', 'Votre email');
         $form->addEmail('email',  $email ?? '', ['label' => 'Email', 'required' => true, 'autofocus', 'placeholder' => 'exemple@domain.com']);

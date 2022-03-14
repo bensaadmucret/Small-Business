@@ -3,6 +3,7 @@
 namespace Core\Controller;
 
 
+use Core\Flash\Flash;
 use Core\Session\Session;
 use Core\Database\Connection;
 use Core\FormBuilder\FormBuilder;
@@ -18,6 +19,7 @@ abstract class BaseController
     protected $connection;
     protected $formBuilder;
     protected $session;
+    protected $flash;
   
 
     public function __construct() {
@@ -26,6 +28,7 @@ abstract class BaseController
         $this->formBuilder = new FormBuilder(); 
         $this->session = new Session();
         $this->session->start();
+        $this->flash = new Flash();
        
     }
 

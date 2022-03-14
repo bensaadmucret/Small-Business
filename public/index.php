@@ -11,7 +11,7 @@ $app = AppFactory::create();
 $container = $app::getContainer();
 $container->get('Database')->connect();
 
-//dump($_SERVER['HTTP_HOST']);
+
 
 //dump($container->get('Router')->getPath());
 //dump($container->get('Router'));

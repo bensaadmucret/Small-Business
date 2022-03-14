@@ -15,7 +15,7 @@ class  Flash
 
     }
 
-    public static function addMessage($key, $value)
+    public static function setMessage($key, $value)
     {
         self::$session->set($key, $value);
     

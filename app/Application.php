@@ -18,6 +18,8 @@ class Application
         $router->add('GET', '/login', 'AuthController@login', 'login');
         $router->add('GET', '/dashboard', 'AuthController@dashboard', 'dashboard');
         $router->add('POST', '/dashboard', 'AuthController@dashboard', 'dashboard');
+        $router->add('GET', '/security/dashboard', 'AuthController@dashboard', 'dashboard-admin');
+        $router->add('POST', '/security/dashboard', 'AuthController@dashboard', 'dashboard-admin');
         $router->add('GET', '/logout', 'AuthController@logout', 'logout');
         $router->add('GET', '/product', 'ProductController@index', 'product_index');
         $router->add('GET', '/product/:id', 'ProductController@show', 'product_show');

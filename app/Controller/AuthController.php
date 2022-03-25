@@ -31,10 +31,11 @@ class AuthController extends BaseController
      */
     public function login()
     {
-        if($this->session->get('admin')) {        
-            //$redirection = new RedirectResponse('/security/dashboard', 302);
-            //return $redirection->send();
-            return $this->redirect('dashboard', 302);
+        if($this->session->has('user')) {  
+            if($this->isAdmin($this->session->get('user'))) {
+                return $this->redirect('dashboard', 302, 'success', 'Vous êtes déjà connecté');
+            }
+            return $this->redirect('dashboard', 302, 'success', 'Vous êtes déjà connecté');
         }
 
         if($this->request->isMethod('post')){  
@@ -46,59 +47,33 @@ class AuthController extends BaseController
          }
 
          
-        $this->render('auth/login',
-        [
-            'title' => 'Login',
-            'message' => 'Please login to access the admin area.',
-            'form' => Authenticator::form(),          
-        ], 'admin-login');
+         $this->render('auth/login',
+         [
+             'title' => 'Login',
+             'message' => 'Veuillez vous connecter pour accéder à la zone d\'administration..',
+             'form' => Authenticator::form(),          
+         ], 'admin-login');
         
     }
 
     public function loginPost($user)
     {  
+       
          
+        if(!$user) {           
+            return $this->redirect('login', 302, 'error', 'Invalid credentials.');
+          }
            
-       $token = $this->request->get('token');
-      
-      if(Token::isTokenValidInSession( $token, $this->session)) {
-               // dd('ok');
-      } 
-        
-        if(!$user) {
-            $this->flash->setMessage('error', 'Invalid credentials.');
-            return $this->redirect('login', 302);
-        }
-        
-   
-        $email = $request->get('email');
-        $password = $request->get('password');        
-  
-
-        if($email == '' || $password == '') {
-            Flash::setMessage('error', 'identifiant invalide.');
-            return false;
-        }
-
-        if($user) {
-                if($this->isAdmin()){
-                    $this->session->set('admin', $user);
-                //$redirection = new RedirectResponse('/security/dashboard', 302);
-                //return $redirection->send();
-                echo 'je suis dnas le dashboard admin';
-                echo $this->session->get('admin');
-                }
-        }else{
+       $token = $this->request->get('token');      
+       if(Token::isTokenValidInSession( $token, $this->session) && $this->postIsValide()) {        
             $this->session->set('user', $user);
-                //$redirection = new RedirectResponse('dashboard', 302); 
-                //return $redirection->send();
-                echo 'je suis dans le dashboard user';
-                echo $this->session->get('user');
-            }
+             $message = 'You are now logged in.';
+                return $this->redirect('dashboard', 302, 'success', $message);   
+          }   
+                 
+         
         Flash::setMessage('error', 'identifiant invalide.');
-        return false;  
-  
-        Authenticator::form();
+        return false;       
        
 
     }
@@ -108,16 +83,18 @@ class AuthController extends BaseController
      *
      * @return boolean
      */
-    public static function isAdmin()
+    public function isAdmin($user)
     {
         if(!isset($_SESSION['user'])) {
             return false;
         }
+       
+       
+            if($user['role'] == 'admin') {
+                return true;
+            }
         
-        $user = $_SESSION['user'];
-        if($user['role'] == 'admin') {
-            return true;
-        }
+        
         
         return false;
     }
@@ -129,15 +106,13 @@ class AuthController extends BaseController
      */
     public function logout()
     {
-        if($this->isAdmin()) {
-            $session = $this->session;
-            dump($session);
-            $session->remove('user');
-            
-            $redirection = new RedirectResponse('/login', 302);
-            return $redirection->send();
-        }
-        unset($_SESSION['user']);
+        
+      $session = $this->session;          
+      $session->remove('user');
+      $session->remove('admin');
+      $redirection = new RedirectResponse('login', 302);
+      return $redirection->send();
+           
     }
     
 
@@ -166,7 +141,7 @@ class AuthController extends BaseController
      * @param [type] $password
      * @return void
      */
-    public function getUserDB($email, $password)
+    private function getUserDB($email, $password)
     {
         $db =  $this->connection;            
         $query = $db->prepare('SELECT * FROM users WHERE email = :email');               
@@ -185,11 +160,27 @@ class AuthController extends BaseController
        
     }
 
+    private function postIsValide()
+    {
+        $email = $this->request->get('email');
+        $password = $this->request->get('password'); 
+  
+
+        if($email == '' || $password == '') {           
+            return false;
+        }
+        return true;
+
+    }
+
     public function dashboard()
     {
+        if(!$this->session->get('user')) {           
+            return $this->redirect('login', 302, 'error', 'Vous devez être connecté pour accéder à cette page.');
+        }
         $this->render('auth/admin-dashboard',
         [
-             'session' => $this->session->get('admin'),
+            'session' => $this->session->get('admin'),
             'title' => 'Dashboard',
             'message' => 'Welcome to your dashboard.',
         ], 'admin');

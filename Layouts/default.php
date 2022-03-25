@@ -23,13 +23,9 @@
 
 
 </head>
-
 <body>
-
 <div class="super_container">
-
 	<!-- Header -->
-
 	<header class="header trans_300">
 
 		<!-- Top Navigation -->
@@ -174,12 +170,8 @@
 			</ul>
 		</div>
 	</div>
-
-
-
     <?php echo $content; ?>
 	<!-- Footer -->
-
 	<footer class="footer">
 		<div class="container">
 			<div class="row">
@@ -224,5 +216,4 @@
 <script src="<?php echo assets('/assets/plugins/easing/easing.js'); ?>"></script>
 <script src="<?php echo assets('/assets/js/custom.js'); ?>"></script>
 </body>
-
 </html>
